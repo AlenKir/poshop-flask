@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div>
+<h1 align="center">{{ title_ }}:</h1>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Ready</th>
+      <th scope="col">Shipped</th>
+      <th scope="col">Cost</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for order in orders %}
+    <tr>
+      <td>{{ order['ready'] }}</td>
+      <td>{{ order['shipped'] }}</td>
+      <td>${{ order['cost'] }}</td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+</div>
+{% endblock %}

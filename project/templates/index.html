@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1 align="center">{% block title %} Welcome to Pigeon & Owl! {% endblock %}</h1>
+    <div class="leftpane">
+        <p align="center">
+        <br><br><br><br>
+        Here you can buy valid and extinguished art stamps,  <br>
+        cozy envelopes, beautiful stickers, charming notebooks,  <br>
+        decorative tape, various cards and postcards, tags and much more  <br>
+        for your creativity and pleasant communication through paper letters!  <br>
+        </p>
+        <h4 align="center"> We wish you a successful shopping! </h4>
+    </div>
+    <div class="rightpane">
+        {% for product in products %}
+            <a href="{{ url_for('main.product', product_id=product['id']) }}">
+                <font color="#191970"><h2>{{ product['name'] }}</h2></font>
+            </a>
+            <img src="static/pictures/{{ product['image'] }}" height="75" border="5" alt="Image">
+            <span color="white" lass="badge badge-primary">${{ product['cost'] }}</span>
+            <p></p>
+        {% endfor %}
+    </div>
+{% endblock %}

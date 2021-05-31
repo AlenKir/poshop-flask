@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block title %}Order Edit{% endblock %}
+{% block content %}
+<h1 align="center">Order № {{ order_id }}</h1>
+{% for product in products %}
+    <a href="{{ url_for('main.product', product_id=product['id']) }}">
+        <font color="#191970"><h5>{{ product['name'] }}</h5></font>
+    </a>
+    <img src="../../static/pictures/{{ product['image'] }}" height="30" border="5" alt="Image">
+    <span color="white" lass="badge badge-primary">${{ product['cost'] }}</span>
+    <p></p>
+    <hr>
+{% endfor %}
+<form align="center" action="/order/edit/{{ order_id }}" formmethod="post">
+    <h3 align="center">Cost: ${{ order['cost'] }}</h3>
+    <div>
+        <label for="ready">Ready?</label>
+        <input type="checkbox" id="ready" name="ready" value="1">
+    </div>
+    <div>
+        <label for="shipped">Shipped?</label>
+        <input type="checkbox" id="shipped" name="shipped" value="1">
+    </div>
+    <button type="submit" class="btn btn-primary" formmethod="post">SAVE</button>
+</form>
+<br>
+<form align="center" action="/orders" formmethod="get">
+    <button type="submit" class="btn btn-primary">BACK TO ORDERS</button>
+</form>
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <div class="toppane">
+    </div>
+    <div class="leftpane">
+        <h2>{% block title %} {{ product['name'] }} {% endblock %}</h2>
+        <h5>${{ product['cost'] }}</h5>
+        <img src="static/pictures/{{ product['image'] }}" height="300" border="5" alt="Image">
+    </div>
+    <div class="rightpane">
+        <p><br></p>
+        <p><h6>See more in <a href="/search_res/{{ product['category'] }}">{{ product['category'] }}</a></h6></p>
+        <p>{{ product['description'] }}</p>
+        <p>{% if current_user.is_authenticated and not current_user.admin %}
+        <form action="/{{ product['id'] }}" formmethod="post">
+            <h4 align="center"><button type="submit" class="btn btn-primary" formmethod="post">ADD TO CART</button></h4>
+        </form>
+        {% endif %}
+        {% if current_user.is_authenticated and current_user.admin %}
+        <form action="/{{ product['id'] }}" formmethod="post">
+            <h4 align="center"><button type="submit" class="btn btn-primary" formmethod="post">DELETE PRODUCT</button></h4>
+        </form>
+        {% endif %}
+        </p>
+    </div>
+</div>
+{% endblock %}

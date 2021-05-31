@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+    {% for product in products %}
+            <a href="{{ url_for('main.product', product_id=product['id']) }}">
+                <font color="#191970"><h2>{{ product['name'] }}</h2></font>
+            </a>
+            <img src="static/pictures/{{ product['image'] }}" height="25" border="5" alt="Image">
+            <span color="white" lass="badge badge-primary">${{ product['cost'] }}</span>
+            <p></p>
+            <hr>
+    {% endfor %}
+    <br>
+        <form action="/cart" formmethod="post">
+            <h4 align="center"><button type="submit" class="btn btn-primary" formmethod="post">CLEAR CART</button></h4>
+        </form>
+    <br>
+        <form action="/addorder" formmethod="post">
+            <h4 align="center"><button type="submit" class="btn btn-primary" formmethod="post">ORDER</button></h4>
+        </form>
+{% endblock %}

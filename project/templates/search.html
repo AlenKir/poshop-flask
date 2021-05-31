@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <p><br></p>
+    <h5 align="center">🕊️&🦉</h5>
+    <p><br><br><br></p>
+    <form action="/search_res" method="POST" align="center" style="margin-left: 20%; margin-right: 20%">
+        <input type="search" class="form-control rounded" id="search_query" name="search_query" placeholder="Search: e. g., royal stamps"/>
+        <p></p>
+        <button type="submit" class="btn btn-outline-primary">SEARCH</button>
+    </form>
+
+{% endblock %}

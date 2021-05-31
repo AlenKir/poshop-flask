@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1 align="center">Orders:</h1>
+<table class="table">
+    <div class="container">
+    <form align="center" action="/filter_orders" formmethod="get">
+        <button type="submit" class="btn btn-outline-primary">SHOW ONLY ORDERS IN PROGRESS</button>
+    </form>
+    </div>
+    <br>
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Ready</th>
+      <th scope="col">Shipped</th>
+      <th scope="col">Cost</th>
+      <th scope="col">Priority</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for order in orders %}
+    <tr>
+      <th scope="row">
+          <a href="{{ url_for('main.order', order_id=order['id']) }}">
+                <h4>{{ order['id'] }}</h4>
+          </a>
+      </th>
+      <td>{{ order['ready'] }}</td>
+      <td>{{ order['shipped'] }}</td>
+      <td>${{ order['cost'] }}</td>
+      <td>{{ order['priority'] }}</td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+{% endblock %}
